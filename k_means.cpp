@@ -49,27 +49,40 @@ int main()
 
     //reserve capacity of array to be sampleSize
     randomSamples.reserve(sampleSize);
+    givenSamples.reserve(sampleSize);
 
-    //generate array of 10 random data samples
+    //populate array of random data samples
     for(int i = 0; i < sampleSize; i++)
     {
-    	samples.push_back(Point(std::rand()));
+    	randomSamples.push_back(Point(std::rand()));
     }
 
-    //print all values in sample data.
-    std::cout << "Random sample data:"
+    //populate array of given samples
+    givenSamples.push_back(Point(2,10));
+    givenSamples.push_back(Point(2,5));
+    givenSamples.push_back(Point(8,4));
+    givenSamples.push_back(Point(5,8));
+    givenSamples.push_back(Point(7,5));
+    givenSamples.push_back(Point(6,4));
+    givenSamples.push_back(Point(1,2));
+    givenSamples.push_back(Point(4,9));
+
+    std::String title = "Random sample data:";
+    printData(title, randomSamples);
+
+    title = "Given sample data:"
+    printData(title, givenSamples);
+}
+
+void printData(std::String title, std::vector<Point> samples)
+{
+    std::cout << title << std::endl;
     for(int i = 0; i < sampleSize; i++)
     {
-    	std::cout << "The sample number is: " << i << "." << std::endl;
-    	std::cout << "X is: " << samples[i].getX() << std::endl;
-    	std::cout << "Y is: " << samples[i].getY() << std::endl;
+        std::cout << "The sample number is: " << i << "." << std::endl;
+        std::cout << "X is: " << samples[i].getX() << std::endl;
+        std::cout << "Y is: " << samples[i].getY() << std::endl;
     }
-
-
-    std::cout << "Given sample data:"
-
-
-
 }
 
 
