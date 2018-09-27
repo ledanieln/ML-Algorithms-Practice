@@ -26,14 +26,6 @@ public:
         this->pos = pos;
 	}
 
-	/*/constructor generates random x and y
-	Point(int seed)
-	{
-		std::srand(seed);
-    	x = std::rand() % 10;
-    	y = std::rand() % 10;
-	}*/
-
 	double getX()
 	{
 		return x;
@@ -67,7 +59,6 @@ void printAData(std::vector<Point> &samples, int sampleSize)
     std::cout << "[ ";
     for(int i = 0; i < sampleSize; i++)
     {
-        //std::cout << "(" << samples[i].getX() << "," << samples[i].getY() << ")";
         std::cout << "(A" << samples[i].getPos() << ")";
     }
     std::cout << " ]" << std::endl;
@@ -102,6 +93,7 @@ std::vector<Point> genRandomCenters(std::vector<Point> &samples, int sampleSize,
     return centers;
 }
 
+//Generates centers from given points
 std::vector<Point> genGivenCenters(std::vector<Point> samples, const int &c1, const int &c2, const int &c3, const int &k)
 {
     std::vector<Point> centers;
