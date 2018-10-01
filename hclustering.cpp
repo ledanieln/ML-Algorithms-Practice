@@ -170,15 +170,6 @@ struct clusters genCluster(std::vector<distIndex> minDist, const int &sampleSize
 	return tempCluster;
 }
 
-std::vector<std::vector<double>> updateMatrix(std::vector<std::vector<double>> sim, std::vector<distIndex> minDist, 
-	std::vector<clusters> mergeHistory )
-{
-	for (int i = 0; i < sampleSize; i++)
-	{
-		sim[i][index1]
-	}
-}
-
 
 /*std::vector<Point> hierarchicalClustering(std::vector<Point> samples, const int &sampleSize)
 {
