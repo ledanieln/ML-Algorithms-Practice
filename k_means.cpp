@@ -77,7 +77,7 @@ void printData(std::string title, std::vector<Point> &samples, int sampleSize)
 }
 
 //Returns random centers from existing data points.
-std::vector<Point> genRandomCenters(std::vector<Point> &samples, int sampleSize, int k)
+std::vector<Point> genRandomCenters(std::vector<Point> &samples, const int &sampleSize, int k)
 {
     std::vector<Point> tempData = samples;
     std::vector<Point> centers;
