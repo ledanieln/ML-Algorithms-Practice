@@ -84,7 +84,7 @@ double calcCompleteLink(std::vector<Point> clusterOne, std::vector<Point> cluste
 	double maxDistance;
 	double tempMax;
 	
-	maxDistance = std::numeric_limits<double>::min();
+	maxDistance = 0;
 	for(int i = 0; i < clusterOne.size(); i++)
 	{
 		for(int j = 0; j < clusterTwo.size(); j++)
@@ -98,7 +98,7 @@ double calcCompleteLink(std::vector<Point> clusterOne, std::vector<Point> cluste
 		}
 	}
 	
-	return minDistance;
+	return maxDistance;
 }
 
 
@@ -138,7 +138,16 @@ std::vector<std::vector<double>> genDistMatrix(std::vector<std::vector<Point>> c
 			}
 		//Calculate complete linkage distance
 		case 3:
-			break;
+			{
+				for (int i = 0; i < size; i++)
+				{
+					for(int j = 0; j < size; j++)
+					{
+						distMatrix[i].push_back(calcCompleteLink(clusters[i], clusters[j]));
+					}
+				}
+				break;
+			}
 			
 		default:
 			std::cout << "You did not choose a case. " << std::endl;
@@ -191,7 +200,7 @@ std::vector<std::vector<Point>> recluster(std::vector<std::vector<Point>> cluste
 		if (tempMin < min)
 		{
 			min = tempMin;
-			minIndex = distances[i].distance;
+			minIndex = distances[i].index;
 		}
 	}
 	
@@ -254,13 +263,18 @@ int main() {
 	{
 		//maintain minimum distances for each cluster
 		minDist = idClosestCluster(clusters, distMatrix);
-		
+			
 		//Add the closest two points into a cluster, remove the two that are added, and add the new cluster back into the cluster vector
 		clusters = recluster(clusters, minDist);
 		
 		//Recalculate distance matrix using single/complete linkage
-		distMatrix = genDistMatrix(clusters, clusters.size(), 2);
-		
+		distMatrix = genDistMatrix(clusters, clusters.size(), 3);
+	
+		for(int i = 0; i < minDist.size(); i++)
+		{
+			std::cout << "distance: " << minDist[i].distance << " index: " << minDist[i].index << std::endl;
+		}
+	
 		printClusters(clusters);
 	}
 	
